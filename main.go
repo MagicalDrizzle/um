@@ -43,6 +43,27 @@ func runCli() error {
 				},
 			},
 			{
+				Name:	"system-version-upgrade",
+				Usage:	"Upgrade your system to the next major release",
+				Description: "Wraps DNF system upgrade logic to transition securely to a new release version.",
+				Action:	systemVersionUpgrade,
+				Flags: []cli.Flag{
+					&cli.BoolFlag{
+						Name:	"yes",
+						Aliases: []string{"y"},
+						Usage:	"Automatically accept the upgrade without prompts, same behavior as dnf's --assumeyes",
+					},
+					&cli.BoolFlag{
+						Name:  "check",
+						Usage: "Check if a newer version is available without upgrading",
+					},
+					&cli.BoolFlag{
+						Name:  "allowerasing",
+						Usage: "Forcefully remove some packages (this is potentially destructive! make sure you know what you're doing)",
+					},
+				},
+			},
+			{
 				Name:   "tweaks",
 				Usage:  "Manage Ultramarine tweaks, a set of optional system patches and configurations",
 				Action: listTweaks,
